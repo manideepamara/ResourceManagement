@@ -9,6 +9,7 @@ const StyledSearch = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid rgba(215, 223, 233, 1);
+  border-radius:4px;
 `;
 
 const SearchLogoWrapper = styled.div`
