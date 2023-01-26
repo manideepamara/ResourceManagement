@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
-  width: 336px;
+  width: min(336px, calc(90%));
   height: 168px;
   display: flex;
   flex-direction: column;
@@ -38,12 +38,14 @@ const Desc = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: #7e858e;
-  width:312px;
+  width: min(calc(90%), 312px);
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
-
+  @media(max-width:376px){
+    display:none;
+  }
 `;
 const Title = styled.div`
   height: 24px;
@@ -65,6 +67,9 @@ const TitleAndCategoryWrapper = styled.div`
 const Wrapper = styled.div`
   display: flex;
   gap: 16px;
+  @media (max-width: 376px) {
+    flex-direction: column;
+  }
 `;
 function Card({ title, icon_url, link, description, category, tag, id }) {
   return (

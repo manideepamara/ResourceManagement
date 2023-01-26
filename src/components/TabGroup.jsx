@@ -7,6 +7,10 @@ const StyledTabGroup = styled.div`
   flex-direction: row;
   justify-content:center;
   flex-wrap:wrap;
+  @media(max-width:600px){
+    flex-direction:column;
+    align-items:center;
+  }
 `;
 function TabGroup({tabsList}) {
     console.log(tabsList)

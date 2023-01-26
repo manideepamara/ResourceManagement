@@ -4,7 +4,8 @@ import styled from "styled-components";
 import SearchLogo from "./SearchLogo";
 
 const StyledSearch = styled.div`
-  width: 648px;
+  width: min(calc(80%), 648px);
+  margin: 0 auto;
   height: 40px;
   display: flex;
   align-items: center;
