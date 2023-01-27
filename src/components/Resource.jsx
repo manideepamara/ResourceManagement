@@ -6,6 +6,8 @@ import TabGroup from "./TabGroup";
 import CardList from "./CardList";
 import Pagination from "./Pagination";
 import { debounce } from "./utils";
+import Loader from "./Loader";
+import Failure from "./Failed";
 
 const Wrapper = styled.div`
   margin-top: 32px;
@@ -68,7 +70,7 @@ function Resource() {
       <Wrapper>
         <Search setValue={debounce(setValue, 1000)} />
         {fetchStatus === "loading" ? (
-          <>Loading...!</>
+          <Loader />
         ) : fetchStatus === "success" ? (
           <>
             <CardList cards={cards.slice((page - 1) * 6, (page - 1) * 6 + 6)} />
@@ -84,7 +86,7 @@ function Resource() {
             
           </>
         ) : (
-          <>Failed...!</>
+          <Failure />
         )}
       </Wrapper>
     </ResourceWrapper>

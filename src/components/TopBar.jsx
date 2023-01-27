@@ -12,6 +12,9 @@ const TopBarWrapper = styled.div`
   height: 72px;
   align-items: center;
   border-bottom: solid 2px #d7dfe9;
+  position:sticky;
+  top:0;
+  background:rgb(255,255,255,0.80)
 `;
 
 const LogoWrapper = styled.div`

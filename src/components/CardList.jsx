@@ -8,7 +8,7 @@ const StyledCardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
-  justify-content:center;
+  justify-content:flex-start;
   width: min(calc(80%), 1144px);
   margin: 0 auto;
   margin-top:32px;
