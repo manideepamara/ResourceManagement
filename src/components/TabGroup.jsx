@@ -13,7 +13,6 @@ const StyledTabGroup = styled.div`
   }
 `;
 function TabGroup({tabsList}) {
-    console.log(tabsList)
   return (
     <StyledTabGroup>
      {tabsList.map((tab,idx)=> <Tab key={idx} {...tab}/>)}
