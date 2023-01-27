@@ -6,25 +6,16 @@ import Block from "./Block";
 const StyledPagination = styled.div`
   display: flex;
   gap: 8px;
-  max-width: 372px;
   justify-content: center;
+  align-items:center;
 `;
 
-function renderBlocks(currPage, onClick, blocksToShow, blocks) {
-  const leftRight = (blocksToShow - 1) / 2;
-  let start = currPage - leftRight,
-    end = currPage + leftRight;
-  if (start <= 0) {
-    start = 1;
-  }
-  if (end > blocks) {
-    start = blocks - blocksToShow + 1;
-  }
-
+function renderBlocksLinear(start, size, currPage, onClick) {
   const res = [];
-  for (let j = start, i = 0; i < blocksToShow; j++, i++) {
+  for (let j = start, i = 0; i < size; j++, i++) {
     res.push(
       <Block
+        key={j}
         selected={j === currPage}
         onClick={() => {
           onClick(j);
@@ -37,35 +28,35 @@ function renderBlocks(currPage, onClick, blocksToShow, blocks) {
   return res;
 }
 
-function renderBlocksLinear(size, currPage,onClick) {
-  const res = [];
-  for (let i = 0; i < size; i++) {
-    res.push(
-      <Block
-        selected={i + 1 === currPage}
-        onClick={() => {
-          onClick(i+1);
-        }}
-      >
-        {i+1}
-      </Block>
-    );
+function renderBlocks(currPage, onClick, blocksToShow, blocks) {
+  const leftRight = (blocksToShow - 1) / 2;
+  let start = currPage - leftRight,
+    end = currPage + leftRight;
+  if (start <= 0) {
+    start = 1;
   }
-  return res;
+  if (end > blocks) {
+    start = blocks - blocksToShow + 1;
+  }
+
+  return renderBlocksLinear(start, blocksToShow, currPage, onClick);
 }
+
 /**
  *
- * blocksToShow always even
+ * blocksToShow always odd
  */
 function Pagination({
   currPage,
-  totalPages,
+  totalItems,
   onClick,
   blockSize,
   blocksToShow,
 }) {
   const blocks =
-    parseInt(totalPages / blockSize) + (totalPages % blockSize === 0 ? 0 : 1);
+    parseInt(totalItems / blockSize) + (totalItems % blockSize === 0 ? 0 : 1);
+  if(blocks===1)
+    return <></>;
   return (
     <StyledPagination>
       {blocks > blocksToShow ? (
@@ -92,7 +83,7 @@ function Pagination({
           )}
         </>
       ) : (
-        renderBlocksLinear(blocks, currPage, onClick)
+        renderBlocksLinear(1,blocks, currPage, onClick)
       )}
     </StyledPagination>
   );

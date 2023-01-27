@@ -5,17 +5,31 @@ import Tab from "./Tab";
 const StyledTabGroup = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content:center;
-  flex-wrap:wrap;
-  @media(max-width:600px){
-    flex-direction:column;
-    align-items:center;
+  justify-content: center;
+  flex-wrap: wrap;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
-function TabGroup({tabsList}) {
+function TabGroup({tabsList, onTabChange }) {
   return (
-    <StyledTabGroup>
-     {tabsList.map((tab,idx)=> <Tab key={idx} {...tab}/>)}
+    <StyledTabGroup
+      onClick={(e) => {
+        onTabChange({
+          ...tabsList,
+          selected: parseInt(e.target.id),
+        });
+      }}
+    >
+      {tabsList.items.map((tab, idx) => (
+        <Tab
+          key={idx}
+          id={idx}
+          text={tab}
+          selected={tabsList.selected === idx}
+        />
+      ))}
     </StyledTabGroup>
   );
 }

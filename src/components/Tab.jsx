@@ -24,8 +24,8 @@ const StyledTab = styled.div`
     border-bottom-left-radius: 4px;
   }
 `;
-function Tab({ text, selected, onClick }) {
-  return <StyledTab selected={selected}>{text}</StyledTab>;
+function Tab({ text, selected,id }) {
+  return <StyledTab id={id} selected={selected}>{text}</StyledTab>;
 }
 
 export default Tab;

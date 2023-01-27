@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import SearchLogo from "./SearchLogo";
 
+
 const StyledSearch = styled.div`
   width: min(calc(80%), 648px);
   margin: 0 auto;
@@ -10,7 +11,7 @@ const StyledSearch = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid rgba(215, 223, 233, 1);
-  border-radius:4px;
+  border-radius: 4px;
 `;
 
 const SearchLogoWrapper = styled.div`
@@ -22,18 +23,26 @@ const SearchLogoWrapper = styled.div`
 const StyledInput = styled.input`
   border: none;
   font-weight: 400;
+  width:100%;
   &::placeholder {
     color: rgba(126, 133, 142, 0.6);
   }
-  outline:none;
+  outline: none;
 `;
-function Search() {
+function Search({ setValue }) {
+ 
   return (
     <StyledSearch>
       <SearchLogoWrapper>
         <SearchLogo />
       </SearchLogoWrapper>
-      <StyledInput placeholder="Search" type="text" />
+      <StyledInput
+        placeholder="Search"
+        type="text"
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
     </StyledSearch>
   );
 }
