@@ -12,9 +12,9 @@ const TopBarWrapper = styled.div`
   height: 72px;
   align-items: center;
   border-bottom: solid 2px #d7dfe9;
-  position:sticky;
-  top:0;
-  background:rgb(255,255,255,0.80)
+  position: sticky;
+  top: 0;
+  background: rgb(255, 255, 255, 0.8);
 `;
 
 const LogoWrapper = styled.div`
@@ -29,20 +29,22 @@ const RightWrapper = styled.div`
   gap: 32px;
 `;
 
-function TopBar() {
+function TopBar({ view,setView }) {
   return (
     <TopBarWrapper>
       <LogoWrapper>
         <NxtWaveLogo />
       </LogoWrapper>
       <RightWrapper>
-        <Button
-          bgColor={"#2DCA73"}
-          text={"ADD ITEM"}
-          onClick={() => {
-            console.log("clicked me");
-          }}
-        ></Button>
+        {view === "resource" && (
+          <Button
+            bgColor={"#2DCA73"}
+            text={"ADD ITEM"}
+            onClick={() => {
+              setView("create")
+            }}
+          ></Button>
+        )}
         <PersonLogo />
       </RightWrapper>
     </TopBarWrapper>

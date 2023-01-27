@@ -23,15 +23,17 @@ const BreadCrumbWrapper = styled.div`
    margin-top:24px;
    margin-bottom:114px;
 `;
-function CreateItem({tabList}) {
+function CreateItem({setTabList,tabList,setView}) {
 
   return (
     <Wrapper>
       <div>
-        <BreadCrumbWrapper>
-            <BreadCrumb text={tabList[0]}/>
+        <BreadCrumbWrapper onClick={()=>{
+          setView("resource");
+        }}>
+            <BreadCrumb text={tabList.items[tabList.selected]}/>
         </BreadCrumbWrapper>
-        <Form />
+        <Form setTabList={setTabList} tabList={tabList}/>
       </div>
       <img src={rightImage} alt="" />
     </Wrapper>

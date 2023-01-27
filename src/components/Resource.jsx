@@ -20,14 +20,10 @@ const ResourceWrapper = styled.div`
 const PaginationWrapper = styled.div`
     margin:20px 0;
 `;
-function Resource() {
+function Resource({tabList,setTabList}) {
   const [cards, setCards] = useState([]);
   const cardsRes = useRef();
   const [value, setValue] = useState("");
-  const [tabList, setTabList] = useState({
-    items: ["Resources", "Requests", "Users"],
-    selected: 0,
-  });
   const [fetchStatus, setFetchStatus] = useState("loading");
   const [page, setPage] = useState(1);
   useEffect(() => {
@@ -52,6 +48,7 @@ function Resource() {
   }, []);
   useEffect(() => {
     if (!cardsRes.current) return;
+    if(fetchStatus!=="success") return;
     setCards(
       cardsRes.current.filter(({ tag, title }) => {
         const tab = tabList.items[tabList.selected];
@@ -62,7 +59,7 @@ function Resource() {
       })
     );
     setPage(1);
-  }, [value, tabList]);
+  }, [fetchStatus,value, tabList]);
 
   return (
     <ResourceWrapper>
