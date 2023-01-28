@@ -8,25 +8,31 @@ import PersonLogo from "./PersonLogo";
 const TopBarWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   height: 72px;
   align-items: center;
   border-bottom: solid 2px #d7dfe9;
   position: sticky;
   top: 0;
   background: rgb(255, 255, 255, 0.8);
+  justify-content:space-between;
+  padding:0 40px;
+  @media(max-width:320px){
+    padding:0 20px;
+  }
 `;
 
 const LogoWrapper = styled.div`
-  flex: 1;
-  margin-left: 48px;
+
 `;
 
 const RightWrapper = styled.div`
-  margin-right: 40px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 32px;
+  @media(max-width:321px){
+    gap:20px;
+  }
 `;
 
 function TopBar({ view,setView }) {
