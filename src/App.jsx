@@ -4,13 +4,14 @@ import TopBar from "./components/TopBar";
 import CreateItem from "./components/CreateItem";
 import Resource from "./components/Resource";
 import LoginForm from "./components/LoginForm";
+import { RESOURCE_VIEW, TAB_LIST } from "./components/constants";
 
 function App() {
   const [tabList, setTabList] = useState({
-    items: ["Resources", "Requests", "Users"],
+    items: TAB_LIST,
     selected: 0,
   });
-  const [view, setView] = useState("resource");
+  const [view, setView] = useState(RESOURCE_VIEW);
   const [isAuth, setIsAuth] = useState(false);
 
   return (
@@ -20,7 +21,7 @@ function App() {
       ) : (
         <>
           <TopBar setIsAuth={setIsAuth} setView={setView} view={view} />
-          {view === "resource" ? (
+          {view === RESOURCE_VIEW ? (
             <Resource setTabList={setTabList} tabList={tabList} />
           ) : (
             <CreateItem

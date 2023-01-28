@@ -8,6 +8,7 @@ import Pagination from "./Pagination";
 import { debounce } from "./utils";
 import Loader from "./Loader";
 import Failure from "./Failed";
+import { FAILED, LOADING, SUCCESS } from "./constants";
 
 const Wrapper = styled.div`
   margin-top: 32px;
@@ -24,7 +25,7 @@ function Resource({tabList,setTabList}) {
   const [cards, setCards] = useState([]);
   const cardsRes = useRef();
   const [value, setValue] = useState("");
-  const [fetchStatus, setFetchStatus] = useState("loading");
+  const [fetchStatus, setFetchStatus] = useState(LOADING);
   const [page, setPage] = useState(1);
   useEffect(() => {
     const controller = new AbortController();
@@ -37,10 +38,10 @@ function Resource({tabList,setTabList}) {
       .then((res) => {
         cardsRes.current = res;
         setCards(res);
-        setFetchStatus("success");
+        setFetchStatus(SUCCESS);
       })
       .catch(({ name }) => {
-        if (name !== "AbortError") setFetchStatus("failed");
+        if (name !== "AbortError") setFetchStatus(FAILED);
       });
     return () => {
       controller.abort();
@@ -66,9 +67,9 @@ function Resource({tabList,setTabList}) {
       <TabGroup tabsList={tabList} onTabChange={setTabList} />
       <Wrapper>
         <Search setValue={debounce(setValue, 1000)} />
-        {fetchStatus === "loading" ? (
+        {fetchStatus === LOADING ? (
           <Loader />
-        ) : fetchStatus === "success" ? (
+        ) : fetchStatus === SUCCESS ? (
           <>
             <CardList cards={cards.slice((page - 1) * 6, (page - 1) * 6 + 6)} />
             <PaginationWrapper>

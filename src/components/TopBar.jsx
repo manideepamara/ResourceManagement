@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import NxtWaveLogo from "./BrandLogo";
 import Button from "./Button";
+import { CREATE_VIEW, RESOURCE_VIEW } from "./constants";
 import PersonLogo from "./PersonLogo";
 
 const TopBarWrapper = styled.div`
@@ -42,12 +43,12 @@ function TopBar({ view,setView,setIsAuth}) {
         <NxtWaveLogo />
       </LogoWrapper>
       <RightWrapper>
-        {view === "resource" && (
+        {view === RESOURCE_VIEW && (
           <Button
             bgColor={"#2DCA73"}
             text={"ADD ITEM"}
             onClick={() => {
-              setView("create")
+              setView(CREATE_VIEW)
             }}
           ></Button>
         )}
