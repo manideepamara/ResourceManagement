@@ -1,8 +1,9 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 import TopBar from "./components/TopBar";
 import CreateItem from "./components/CreateItem";
 import Resource from "./components/Resource";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   const [tabList, setTabList] = useState({
@@ -10,13 +11,25 @@ function App() {
     selected: 0,
   });
   const [view, setView] = useState("resource");
+  const [isAuth, setIsAuth] = useState(false);
+
   return (
     <>
-      <TopBar setView={setView} view={view}/>
-      {view === "resource" ? (
-        <Resource setTabList={setTabList} tabList={tabList} />
+      {!isAuth ? (
+        <LoginForm setIsAuth={setIsAuth}/>
       ) : (
-        <CreateItem setView={setView} setTabList={setTabList} tabList={tabList} />
+        <>
+          <TopBar setIsAuth={setIsAuth} setView={setView} view={view} />
+          {view === "resource" ? (
+            <Resource setTabList={setTabList} tabList={tabList} />
+          ) : (
+            <CreateItem
+              setView={setView}
+              setTabList={setTabList}
+              tabList={tabList}
+            />
+          )}
+        </>
       )}
     </>
   );

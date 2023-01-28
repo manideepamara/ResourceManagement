@@ -35,7 +35,7 @@ const RightWrapper = styled.div`
   }
 `;
 
-function TopBar({ view,setView }) {
+function TopBar({ view,setView,setIsAuth}) {
   return (
     <TopBarWrapper>
       <LogoWrapper>
@@ -51,7 +51,7 @@ function TopBar({ view,setView }) {
             }}
           ></Button>
         )}
-        <PersonLogo />
+        <PersonLogo onClick={()=>{setIsAuth(false)}} />
       </RightWrapper>
     </TopBarWrapper>
   );
