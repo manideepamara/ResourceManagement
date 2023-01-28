@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     font-weight:300;
     color:#7E858E;
     align-items:center;
+    cursor:pointer;
 
 `;
 function BreadCrumb({ text }) {

@@ -28,6 +28,7 @@ function Form({ setTabList, tabList }) {
     link: false,
     description: false,
     category: false,
+    tag: false,
   });
   const isValidFormData = () => {
     let isValid = true;
@@ -37,6 +38,7 @@ function Form({ setTabList, tabList }) {
       link: false,
       description: false,
       category: false,
+      tag: false,
     };
     const expression =
       /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
@@ -60,6 +62,10 @@ function Form({ setTabList, tabList }) {
     if (formData.description.length === 0) {
       isValid = false;
       data.description = true;
+    }
+    if (formData.tag === 0) {
+      isValid = false;
+      data.tag = true;
     }
     return { isValid, data };
   };
@@ -126,22 +132,20 @@ function Form({ setTabList, tabList }) {
           <Label>tag name</Label>
           <DropDown
             id="tag"
+            defaultValue={tabList.selected}
             onChange={(e) => {
               setTabList({ ...tabList, selected: parseInt(e.target.value) });
             }}
           >
-            {tabList.items.map((tab, idx) =>
-              idx === tabList.selected ? (
-                <option value={idx} defaultValue key={idx}>
-                  {tab}
-                </option>
-              ) : (
-                <option value={idx} key={idx}>
-                  {tab}
-                </option>
-              )
-            )}
+            {tabList.items.map((tab, idx) => (
+              <option value={idx} key={idx}>
+                {tab}
+              </option>
+            ))}
           </DropDown>
+          {error.tag && (
+            <ErrorMessage>tag should be either user/request</ErrorMessage>
+          )}
         </ItemWrapper>
         <ItemWrapper>
           <Label>category</Label>

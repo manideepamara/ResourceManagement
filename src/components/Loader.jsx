@@ -10,7 +10,6 @@ const Wrapper = styled.div`
 `;
 function Loader() {
   return <>
-  loading
   <Wrapper>...</Wrapper>;
   </>
 }
