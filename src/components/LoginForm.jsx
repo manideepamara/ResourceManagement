@@ -67,7 +67,7 @@ function LoginForm({ setIsAuth }) {
           <TextBox type={"password"} id={"password"}></TextBox>
           {error.password && <ErrorMessage>please fill the password</ErrorMessage>}
         </ItemWrapper>
-        <Button bgColor={"#0B69FF"} text={"CREATE"} onClick={onSubmit} />
+        <Button bgColor={"#0B69FF"} text={"LOGIN"} onClick={onSubmit} />
       </FormWrapper>
       <NxtWaveLogo />
     </LoginWrapper>
