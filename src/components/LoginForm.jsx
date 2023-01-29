@@ -59,7 +59,7 @@ function LoginForm({ setIsAuth }) {
         <FormTitle>Login</FormTitle>
         <ItemWrapper>
           <Label>username</Label>
-          <TextBox type="tel" id={"username"}></TextBox>
+          <TextBox type="tel" id={"username"} placeholder={"mobile number"}></TextBox>
           {error.username && <ErrorMessage>Username is invalid</ErrorMessage>}
         </ItemWrapper>
         <ItemWrapper>

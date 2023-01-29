@@ -79,6 +79,15 @@ function Form({ setTabList, tabList }) {
       });
       return;
     }
+    setFormData({
+      title: "",
+      icon_url: "",
+      link: "",
+      description: "",
+      category: "",
+      tag: tabList.selected,
+    });
+
     fetch(
       "https://media-content.ccbp.in/website/react-assignment/add_resource.json"
     )
@@ -111,19 +120,29 @@ function Form({ setTabList, tabList }) {
         <FormTitle>Item Details</FormTitle>
         <ItemWrapper>
           <Label>item title</Label>
-          <TextBox type="text" id="title" />
+          <TextBox type="text" id="title" value={formData.title} />
           {error.title && (
             <ErrorMessage>Title should not be empty</ErrorMessage>
           )}
         </ItemWrapper>
         <ItemWrapper>
           <Label>link</Label>
-          <TextBox type="text" color="#0B69FF" id="link" />
+          <TextBox
+            type="text"
+            color="#0B69FF"
+            id="link"
+            value={formData.link}
+          />
           {error.link && <ErrorMessage>Link Should be valid</ErrorMessage>}
         </ItemWrapper>
         <ItemWrapper>
           <Label>icon url</Label>
-          <TextBox type="text" color="#0B69FF" id="icon_url" />
+          <TextBox
+            type="text"
+            color="#0B69FF"
+            id="icon_url"
+            value={formData.icon_url}
+          />
           {error.icon_url && (
             <ErrorMessage>icon path Should be valid</ErrorMessage>
           )}
@@ -149,14 +168,20 @@ function Form({ setTabList, tabList }) {
         </ItemWrapper>
         <ItemWrapper>
           <Label>category</Label>
-          <TextBox type="text" id="category" />
+          <TextBox type="text" id="category" value={formData.category} />
           {error.category && (
             <ErrorMessage>category Should be mandatory</ErrorMessage>
           )}
         </ItemWrapper>
         <ItemWrapper>
           <Label>description</Label>
-          <TextArea type="text" height={64} width={296} id="description" />
+          <TextArea
+            type="text"
+            height={64}
+            width={296}
+            id="description"
+            value={formData.description}
+          />
           {error.description && (
             <ErrorMessage>Description Should be mandatory</ErrorMessage>
           )}

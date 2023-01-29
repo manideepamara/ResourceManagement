@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BreadCrumb from "./BreadCrumb";
+import { RESOURCE_VIEW } from "./constants";
 import Form from "./Form";
 
 import rightImage from "./rightImage.png";
@@ -29,7 +30,7 @@ function CreateItem({setTabList,tabList,setView}) {
     <Wrapper>
       <div>
         <BreadCrumbWrapper onClick={()=>{
-          setView("resource");
+          setView(RESOURCE_VIEW);
         }}>
             <BreadCrumb text={tabList.items[tabList.selected]}/>
         </BreadCrumbWrapper>

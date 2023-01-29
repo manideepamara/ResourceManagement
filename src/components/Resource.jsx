@@ -49,7 +49,7 @@ function Resource({tabList,setTabList}) {
   }, []);
   useEffect(() => {
     if (!cardsRes.current) return;
-    if(fetchStatus!=="success") return;
+    //if(fetchStatus!=="success") return;
     setCards(
       cardsRes.current.filter(({ tag, title }) => {
         const tab = tabList.items[tabList.selected];
@@ -60,7 +60,7 @@ function Resource({tabList,setTabList}) {
       })
     );
     setPage(1);
-  }, [fetchStatus,value, tabList]);
+  }, [value, tabList]);
 
   return (
     <ResourceWrapper>
